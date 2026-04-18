@@ -1335,6 +1335,9 @@ extern "C" void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *CanHandle)
 
       rxmsg.bus = canObj->bus;
       _can->addToRingBuffer(_can->rxRing, rxmsg);
+	  if (_can->_user_callback != nullptr) {
+		_can->_user_callback(rxmsg);
+	  }
     }
   } while(HAL_CAN_GetRxFifoFillLevel(CanHandle, fifo));
   //Enable_Interrupts(state);
