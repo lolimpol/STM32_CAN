@@ -252,6 +252,8 @@ typedef struct {
   uint32_t bus;
 } stm32_can_t;
 
+typedef void (*CAN_Callback_t)(const CAN_message_t &msg);
+
 class STM32_CAN {
 
   public:
@@ -303,6 +305,11 @@ class STM32_CAN {
     void enableSilentLoopBack(bool yes = 1);
 
     void setAutoBusOffRecovery(bool enabled);
+
+	public:
+    	void attachInterrupt(CAN_Callback_t callback);
+	private:
+    	CAN_Callback_t _user_callback = nullptr;
 
 /**-------------------------------------------------------------
  *     lifecycle functions
