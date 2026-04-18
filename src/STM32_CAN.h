@@ -305,11 +305,7 @@ class STM32_CAN {
     void enableSilentLoopBack(bool yes = 1);
 
     void setAutoBusOffRecovery(bool enabled);
-
-	public:
-    	void attachInterrupt(CAN_Callback_t callback);
-	private:
-    	CAN_Callback_t _user_callback = nullptr;
+    void attachInterrupt(CAN_Callback_t callback);
 
 /**-------------------------------------------------------------
  *     lifecycle functions
@@ -400,6 +396,7 @@ class STM32_CAN {
     void      freeBuffers(void);
     bool      isRingBufferEmpty(RingbufferTypeDef &ring);
     uint32_t  ringBufferCount(RingbufferTypeDef &ring);
+	CAN_Callback_t _user_callback = nullptr;
 
     template <typename T, size_t N>
     bool      lookupBaudrate(int Baudrate, const T(&table)[N]);
