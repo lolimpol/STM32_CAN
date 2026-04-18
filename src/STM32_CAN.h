@@ -306,7 +306,7 @@ class STM32_CAN {
 
     void setAutoBusOffRecovery(bool enabled);
     void attachInterrupt(CAN_Callback_t callback);
-
+	CAN_Callback_t _user_callback = nullptr;
 /**-------------------------------------------------------------
  *     lifecycle functions
  *     setBaudRate may be called before or after begin
@@ -396,7 +396,7 @@ class STM32_CAN {
     void      freeBuffers(void);
     bool      isRingBufferEmpty(RingbufferTypeDef &ring);
     uint32_t  ringBufferCount(RingbufferTypeDef &ring);
-	CAN_Callback_t _user_callback = nullptr;
+	
 
     template <typename T, size_t N>
     bool      lookupBaudrate(int Baudrate, const T(&table)[N]);
