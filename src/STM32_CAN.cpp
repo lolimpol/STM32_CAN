@@ -530,6 +530,10 @@ void STM32_CAN::stop()
   HAL_CAN_DeInit( &_can.handle );
 }
 
+void STM32_CAN::attachInterrupt(CAN_Callback_t callback) {
+    _user_callback = callback;
+}
+
 
 /**-------------------------------------------------------------
  *     post begin(), setup filters, data transfer
